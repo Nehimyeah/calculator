@@ -1,59 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,400;1,500&display=swap');
 
-button {
-    font-family: 'Orbitron', sans-serif;
+:root {
+    --ds-color: #191a1f;
+    --key-bg-color: #24262c;
+    --buttons-color: #26282e;
+    --text-color: #e4e4e4;
+    --clear-color: #80c7bf;
+    --operators-color: #ff7d88;   
 }
 
-div {
-    border-radius: 15px;
+body {
+    color: var(--text-color);
+}
+
+button {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--buttons-color);
+    color: var(--text-color);
 }
 
 #frame {
     height: calc(100vh - 150px);
-    width: calc(100vh - 400px);
-    background-color: grey;
+    width: calc(100vh - 470px);
     margin: 75px auto 0 auto;
-    padding-top: 10px;
 }
 
 #display {
-    background-color: aliceblue;
-    width: calc(100% - 50px);
-    height: 100px;
-    margin: 50px auto 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    row-gap: 20px;
-}
-
-#controls {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 10px;
-    height: 70px;
-    width: calc(100% - 50px);
-    margin: 30px auto 0 auto;
-}
-
-button {
-    border-radius: 10px;
-    border: none;
-    color: blue;
-    font-weight: 800;
-    font-size: 15px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-#keys {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    column-gap: 10px;
-    row-gap: 10px;
-    width: calc(100% - 50px);
-    margin: 30px auto 0 auto;
-    height: calc(100vh - 450px);
+    background-color: var(--ds-color);
+    width: 100%;
+    height: 250px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    position: relative;
+    z-index: -10;
 }
 
 p {
@@ -67,4 +47,52 @@ p {
 
 #ds {
     text-align: right;
+    position: absolute;
+    right: 0;
+    bottom: 50px;
+}
+
+#control {
+    width: 100%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background-color: var(--key-bg-color);
+    margin: -30px auto 0 auto;
+}
+
+#controls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+    width: calc(100% - 50px);
+    height: 45px;
+    padding-top: 40px;
+    margin: auto;
+}
+
+button {
+    border-radius: 10px;
+    border: none;
+    font-weight: 800;
+    font-size: 15px;
+}
+
+#controls button {
+    color: var(--clear-color);
+}
+
+#operation {
+    color: var(--operators-color);
+}
+
+#keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    column-gap: 10px;
+    row-gap: 10px;
+    width: calc(100% - 50px);
+    margin: 10px auto 0 auto;
+    padding-bottom: 20px;
+    height: calc(100vh - 550px);
 }
