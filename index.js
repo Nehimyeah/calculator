@@ -16,6 +16,8 @@ const divide = (a, b) => {
 
 const numbers = document.querySelectorAll('#number');
 const ds = document.querySelector('#ds');
+ds.textContent = 0;
+const controls = document.querySelectorAll("#controls > button");
 
 
 numbers.forEach((button) => {
@@ -29,6 +31,7 @@ numbers.forEach((button) => {
     })
 })
 
+let operand = null;
 const operate = (operation, a, b) => {
     switch(operation) {
         case '+':
@@ -45,3 +48,29 @@ const operate = (operation, a, b) => {
             break;
     }
 }
+
+const clear = () => {
+    if (ds.textContent != 0) {
+        operand = null;
+        ds.textContent = 0;
+    }    
+}
+
+const backspace = () => {
+    if (ds.textContent != 0) {
+        let len = ds.textContent.length
+        if (len == 1)
+            ds.textContent = 0;
+        else
+            ds.textContent = ds.textContent.slice(0, len - 1);
+    }
+}
+
+controls.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        if (e.target.id === 'clear')
+            clear();
+        else if (e.target.id === 'delete') 
+            backspace();
+    })
+})
