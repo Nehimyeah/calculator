@@ -22,12 +22,7 @@ const controls = document.querySelectorAll("#controls > button");
 
 numbers.forEach((button) => {
     button.addEventListener('click', (e) => {
-        if (ds.textContent.length < 12)
-            if (ds.textContent === '0')
-                ds.textContent = e.target.textContent;
-            else {
-                ds.textContent += e.target.textContent;
-            }
+        populateDisplay(e.target.textContent);
     })
 })
 
@@ -47,6 +42,15 @@ const operate = (operation, a, b) => {
             divide(a, b);
             break;
     }
+}
+
+const populateDisplay = (number) => {
+    if (ds.textContent.length < 12)
+        if (ds.textContent === '0')
+            ds.textContent = number;
+        else {
+            ds.textContent += number;
+        }
 }
 
 const clear = () => {
