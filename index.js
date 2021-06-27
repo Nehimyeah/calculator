@@ -55,17 +55,28 @@ const operate = (operation, a, b) => {
     }
 }
 
+const evaluate = (oper, firstOperand, secondOperand) => {
+    resetScreen = true;
+    operate(operator, operand, parseInt(ds.textContent));
+    resetScreen = false;
+}
+
 operations.forEach((button) => {
     button.addEventListener('click', (e) => {
         let sign = e.target.textContent;
         if (sign === '=') {
-            resetScreen = true;
-            operate(operator, operand, parseInt(ds.textContent));
-            resetScreen = false;
+            evaluate(operator, operand, parseInt(ds.textContent));
+            operator = null;
+            operand = null;
         } else {
-            operand = parseInt(ds.textContent);
-            operator = e.target.textContent;
-            ds.textContent = 0;
+            if (operand && operator) {
+                evaluate(operator, operand, parseInt(ds.textContent));
+                operator = sign;
+            } else {
+                operand = parseInt(ds.textContent);
+                operator = sign;
+                ds.textContent = 0;
+            }
         }
     })
 })
@@ -75,7 +86,7 @@ const populateDisplay = (number) => {
         ds.textContent = "";
     }
     if (ds.textContent.length < 12)
-        if (ds.textContent === '0')
+        if (ds.textContent === '0' || (operator && operand))
             ds.textContent = number;
         else {
             ds.textContent += number;
