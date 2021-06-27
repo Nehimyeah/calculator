@@ -1,3 +1,19 @@
+const add = (a, b) => {
+    return a + b;
+}
+
+const subtract = (a, b) => {
+    return a - b;
+}
+
+const multiply = (a, b) => {
+    return a * b;
+}
+
+const divide = (a, b) => {
+    return a / b;
+}
+
 const numbers = document.querySelectorAll('#number');
 
 const ds = document.querySelector('#ds');
@@ -12,3 +28,5 @@ numbers.forEach((button) => {
             }
     })
 })
+
+
