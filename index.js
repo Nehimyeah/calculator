@@ -83,10 +83,8 @@ const populateDisplay = (number) => {
 }
 
 const clear = () => {
-    if (ds.textContent != 0) {
-        operand = null;
-        ds.textContent = 0;
-    }    
+    operand = null;
+    ds.textContent = 0;
 }
 
 const backspace = () => {
