@@ -84,6 +84,7 @@ const populateDisplay = (number) => {
 
 const clear = () => {
     operand = null;
+    operator = null;
     ds.textContent = 0;
 }
 
