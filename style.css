@@ -1,11 +1,11 @@
-body {
-    color: blue;
-    font-weight: 900;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+button {
+    font-family: 'Orbitron', sans-serif;
 }
 
 div {
     border-radius: 15px;
-    color: blue;
 }
 
 #frame {
@@ -21,6 +21,10 @@ div {
     width: calc(100% - 50px);
     height: 100px;
     margin: 50px auto 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 20px;
 }
 
 #controls {
@@ -50,4 +54,17 @@ button {
     width: calc(100% - 50px);
     margin: 30px auto 0 auto;
     height: calc(100vh - 450px);
+}
+
+p {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 25px;
+    font-weight: 200;
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#ds {
+    text-align: right;
 }
