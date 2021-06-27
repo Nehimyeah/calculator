@@ -19,6 +19,7 @@ const ds = document.querySelector('#ds');
 ds.textContent = 0;
 const controls = document.querySelectorAll("#controls > button");
 const operations = document.querySelectorAll('#operation');
+const dot = document.querySelector('#dot');
 
 numbers.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -48,6 +49,7 @@ const operate = (operation, a, b) => {
                 alert("Invalid operation");
             } else {
                 operand = divide(a, b);
+                operand = Math.floor(operand * 100000000000) / 100000000000;
                 populateDisplay(operand);
             }
             
@@ -57,7 +59,7 @@ const operate = (operation, a, b) => {
 
 const evaluate = (oper, firstOperand, secondOperand) => {
     resetScreen = true;
-    operate(operator, operand, parseInt(ds.textContent));
+    operate(operator, operand, parseFloat(ds.textContent));
     resetScreen = false;
 }
 
@@ -65,15 +67,15 @@ operations.forEach((button) => {
     button.addEventListener('click', (e) => {
         let sign = e.target.textContent;
         if (sign === '=') {
-            evaluate(operator, operand, parseInt(ds.textContent));
+            evaluate(operator, operand, parseFloat(ds.textContent));
             operator = null;
             operand = null;
         } else {
             if (operand && operator) {
-                evaluate(operator, operand, parseInt(ds.textContent));
+                evaluate(operator, operand, parseFloat(ds.textContent));
                 operator = sign;
             } else {
-                operand = parseInt(ds.textContent);
+                operand = parseFloat(ds.textContent);
                 operator = sign;
                 ds.textContent = 0;
             }
@@ -86,7 +88,7 @@ const populateDisplay = (number) => {
         ds.textContent = "";
     }
     if (ds.textContent.length < 12)
-        if (ds.textContent === '0' || (operator && operand))
+        if ((ds.textContent === '0' && number !== '.') || (operator && operand))
             ds.textContent = number;
         else {
             ds.textContent += number;
@@ -116,4 +118,11 @@ controls.forEach((button) => {
         else if (e.target.id === 'delete') 
             backspace();
     })
+})
+
+dot.addEventListener('click', (e) => {
+    let regex = /[.]/;
+    if (!ds.textContent.match(regex)) {
+        populateDisplay('.');
+    }
 })
