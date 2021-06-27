@@ -18,7 +18,7 @@ const numbers = document.querySelectorAll('#number');
 const ds = document.querySelector('#ds');
 ds.textContent = 0;
 const controls = document.querySelectorAll("#controls > button");
-
+const operations = document.querySelectorAll('#operation');
 
 numbers.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -27,24 +27,53 @@ numbers.forEach((button) => {
 })
 
 let operand = null;
+let operator = null;
+let resetScreen = false;
 const operate = (operation, a, b) => {
     switch(operation) {
         case '+':
-            add(a, b);
+            operand = add(a, b);
+            populateDisplay(operand);
             break;
         case '-':
-            subtract(a, b);
+            operand = subtract(a, b);
+            populateDisplay(operand);
             break;
         case 'x':
-            multiply(a, b);
+            operand = multiply(a, b);
+            populateDisplay(operand);
             break;
         case '/':
-            divide(a, b);
+            if (b === 0) {
+                alert("Invalid operation");
+            } else {
+                operand = divide(a, b);
+                populateDisplay(operand);
+            }
+            
             break;
     }
 }
 
+operations.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        let sign = e.target.textContent;
+        if (sign === '=') {
+            resetScreen = true;
+            operate(operator, operand, parseInt(ds.textContent));
+            resetScreen = false;
+        } else {
+            operand = parseInt(ds.textContent);
+            operator = e.target.textContent;
+            ds.textContent = 0;
+        }
+    })
+})
+
 const populateDisplay = (number) => {
+    if (resetScreen) {
+        ds.textContent = "";
+    }
     if (ds.textContent.length < 12)
         if (ds.textContent === '0')
             ds.textContent = number;
