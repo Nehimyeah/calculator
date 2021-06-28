@@ -18,6 +18,10 @@ button {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--buttons-color);
     color: var(--text-color);
+    border-radius: 10px;
+    border: none;
+    font-weight: 800;
+    font-size: 15px;
 }
 
 #frame {
@@ -68,13 +72,6 @@ p {
     height: 45px;
     padding-top: 40px;
     margin: auto;
-}
-
-button {
-    border-radius: 10px;
-    border: none;
-    font-weight: 800;
-    font-size: 15px;
 }
 
 #controls button {
