@@ -7,7 +7,8 @@
     --buttons-color: #26282e;
     --text-color: #e4e4e4;
     --clear-color: #80c7bf;
-    --operators-color: #ff7d88;   
+    --operators-color: #ff7d88;
+    --buttons-hover-color: #33363f;
 }
 
 body {
@@ -22,6 +23,12 @@ button {
     border: none;
     font-weight: 800;
     font-size: 15px;
+    transition: all .3s;
+}
+
+button:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 1px 2px;
+    background-color: var(--buttons-hover-color);
 }
 
 #frame {
