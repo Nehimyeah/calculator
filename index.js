@@ -30,6 +30,7 @@ numbers.forEach((button) => {
 let operand = null;
 let operator = null;
 let resetScreen = false;
+let chained = false;
 const operate = (operation, a, b) => {
     switch(operation) {
         case '+':
@@ -74,9 +75,11 @@ operations.forEach((button) => {
             if (operand && operator) {
                 evaluate(operator, operand, parseFloat(ds.textContent));
                 operator = sign;
+                chained = true;
             } else {
                 operand = parseFloat(ds.textContent);
                 operator = sign;
+                chained = false;
                 ds.textContent = 0;
             }
         }
@@ -88,7 +91,11 @@ const populateDisplay = (number) => {
         ds.textContent = "";
     }
     if (ds.textContent.length < 12)
-        if ((ds.textContent === '0' && number !== '.') || (operator && operand))
+        if (chained) {
+            ds.textContent = number;
+            chained = false;
+        }        
+        else if ((ds.textContent === '0' && number !== '.'))
             ds.textContent = number;
         else {
             ds.textContent += number;
